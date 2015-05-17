@@ -3,7 +3,7 @@
 Yleisiä linkkejä:
 
 * [Linkki sovellukseeni](http://ezaalto.users.cs.helsinki.fi/hemohes/)
-* [Linkki dokumentaatiooni](https://github.com/MucousDischarge/Tsoha-Bootstrap)
+* [Linkki dokumentaatiooni](https://github.com/MucousDischarge/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
 
 ## Työn aihe
 

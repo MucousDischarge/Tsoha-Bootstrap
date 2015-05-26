@@ -9,7 +9,11 @@ class HelloWorldController extends BaseController {
 
     public static function sandbox() {
         // Testaa koodiasi täällä
-        View::make('helloworld.html');
+        View::make('etusivu.html');
+    }
+    
+    public static function hallinta() {
+        View::make('hallintakirjautuminen.html');
     }
 
 }

@@ -5,7 +5,7 @@ Yleisiä linkkejä:
 * [Linkki sovellukseeni](http://ezaalto.users.cs.helsinki.fi/hemohes/)
 * [Linkki dokumentaatiooni (päivitetty)](https://github.com/MucousDischarge/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
 
-http://ezaalto.users.cs.helsinki.fi/hemohes/hiekkalaatikko
+* [Linkki sivulleni](http://ezaalto.users.cs.helsinki.fi/hemohes/hiekkalaatikko)
 
 ## Työn aihe
 

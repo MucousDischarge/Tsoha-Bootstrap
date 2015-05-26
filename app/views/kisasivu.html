@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+{% block content %}
+  <h1>Koivistolan kisat</h1>
+  <!-- Painikkeet tähän -->
+  <p>
+    <button class="btn btn-danger">Poista</button> <a href="#" class="btn btn-default">Muokkaa</a>
+  </p>
+  <!-- Tiedot tulee listana tähän -->
+  <ul>
+    <li><strong>Päivämäärä (pitää muuten lisätä tämä tauluihin):</strong> 11.1.2014</li>
+    <li><strong>Sijainti:</strong>Koivistola</li>
+    <li><strong>Status:</strong> <label class="label label-danger">kesken</label></li>
+    <li><strong>Lisäyspäivä:</strong> 9.1.2014</li>
+  </ul>
+  <!-- Kuvaus tulee tähän -->
+  <p>
+    Koivistolan hiihtokilpailu tapahtuu joka vuosi.
+  </p>
+{% endblock %}

@@ -6,16 +6,14 @@ class MalliController extends BaseController{
     View::make('kisa/index.html', array('malli' => $malli));
   }
   
-  public static function listausnakyma(){
-      $allu = Malliluokka::all();
-  }
-  
   public static function esittelynakyma(){
-      $eka = Malliluokka::find(1);
+    $malli = Malliluokka::find(1);
+    View::make('kisa/index.html', array('malli' => $malli));
   }
   
   public static function lisaysnakyma(){
-    
+    $malli = Malliluokka::all();
+    View::make('kisa/new.html', array('malli' => $malli));
   }
  
   public static function lisays(){

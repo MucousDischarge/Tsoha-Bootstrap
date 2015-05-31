@@ -9,8 +9,11 @@ Yleisiä linkkejä:
 * [Linkki tietokantaani (unohtui aiemmin)](http://ezaalto.users.cs.helsinki.fi/hemohes/tietokantayhteys)
 
 Lisäsin juuri tietokohteen:
+
 kisanumero (kilpailija & kisa ---> kisanumero
+
 lisäksi lisäsin kisaan nimen ja päivämäärän, ja kilpailijaan nimen.
+
 ## Työn aihe
 
 http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Hiihtokisojen_tulospalvelu.html

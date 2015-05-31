@@ -15,5 +15,15 @@ class HelloWorldController extends BaseController {
     public static function hallinta() {
         View::make('hallintakirjautuminen.html');
     }
+    
+    public static function all() {
+        
+    }
+    
+    public static function find() {
+    }
+    
+    public static function save() {
+    }
 
 }

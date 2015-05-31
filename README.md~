@@ -2,7 +2,7 @@
 
 Huom. näkymä ei vielä toimi.
 
-Yleisiä linkkejä:
+### Yleisiä linkkejä:
 
 Vaillinaiset:
 * [Linkki sovellukseni etusivulle](http://ezaalto.users.cs.helsinki.fi/hemohes/)

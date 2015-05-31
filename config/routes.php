@@ -15,3 +15,15 @@
   $routes->get('/kisa', function(){
     MalliController::index();
   });
+  
+  $routes->get('/kisa/new', function(){
+    MalliController::create();
+  });
+  
+  //$routes->get('/kisa/:id', function($id){
+    //MalliController::show($id);
+  //});
+  
+  $routes->post('/kisa', function(){
+    MalliController::store();
+  });

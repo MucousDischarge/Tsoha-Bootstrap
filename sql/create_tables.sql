@@ -9,7 +9,7 @@ CREATE TABLE Kisa(
 
 CREATE TABLE Kilpailija(
   id SERIAL PRIMARY KEY,
-  nimi varchar(50, 
+  nimi varchar(50), 
   nippelitieto varchar(200)
 );
 

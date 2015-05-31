@@ -12,7 +12,7 @@ class Malliluokka extends BaseModel{
         $query = DB::connection()->prepare('SELECT * FROM Kisa');
         $query->execute();
         $rows = $query->fetchAll();
-        $mallit = array();
+        $malli = array();
 
         foreach($rows as $row){
           $malli[] = new Malliluokka(array(
@@ -28,7 +28,7 @@ class Malliluokka extends BaseModel{
     
     
 
-    public static function find(){
+    public static function find($id){
         $query = DB::connection()->prepare('SELECT * FROM Kisa WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $id));
         $row = $query->fetch();

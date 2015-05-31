@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+  <h1>Käyttäjän Henri pelikirjasto</h1>
+
+  <p>
+    <a href="{{base_path}}/kisa/new" class="btn btn-success">Lisää peli</a>
+  </p>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Nimi</th>
+        <th>Julkaisupäivä</th>
+        <th>Julkaisija</th>
+        <th>Status</th>
+        <th>Lisäyspäivä</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for kisa in malli %}
+        <tr>
+          <td><a href="{{base_path}}/kisa/{{kisa.id}}">{{kisa.nimi}}</td>
+          <td>{{kisa.ajankohta}}</td>
+          <td>{{kisa.nippelitieto}}</td>
+          <td><a class="btn btn-default btn-sm" href="{{base_path}}/kisa/{{kisa.id}}/edit">Muokkaa</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

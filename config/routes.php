@@ -17,7 +17,7 @@
   });
   
   $routes->get('/kisa/new', function(){
-    MalliController::create();
+    MalliController::lisaysnakyma();
   });
   
   //$routes->get('/kisa/:id', function($id){

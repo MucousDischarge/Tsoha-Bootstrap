@@ -13,17 +13,17 @@
   });
   
   $routes->get('/kisa', function(){
-    MalliController::index();
+    KisaController::index();
   });
   
-  $routes->get('/kisa/new', function(){
-    MalliController::lisaysnakyma();
+  $routes->get('/kisa/lisays', function(){
+    KisaController::lisaysnakyma();
   });
   
-  //$routes->get('/kisa/:id', function($id){
-    //MalliController::show($id);
-  //});
+  $routes->post('/kisa/', function(){
+    KisaController::lisays();
+  });
   
-  $routes->post('/kisa', function(){
-    MalliController::store();
+  $routes->get('/kisa/:id', function($id){
+    KisaController::esittely($id);
   });

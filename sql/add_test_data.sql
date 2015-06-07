@@ -10,3 +10,5 @@ INSERT INTO Valipiste (id, kisa_id) VALUES (1, (SELECT id from Kisa WHERE id=1))
 INSERT INTO Aika (valipiste_id, kilpailija_id, aika) VALUES ((SELECT id from Valipiste WHERE id=12), (SELECT id from Kilpailija WHERE id=1234), to_timestamp('200612251011131516','YYYYMMDDHHMISSFF'));
 
 INSERT INTO Kisanumero(kilpailija_id, kisa_id, kisanumero) VALUES ((SELECT id from Kilpailija WHERE id=1234), (SELECT id from Kisa WHERE id=1), 1);
+
+INSERT INTO Kayttaja(kayttajanimi, salasana) VALUES ('kayttajanimi', 'salasana');

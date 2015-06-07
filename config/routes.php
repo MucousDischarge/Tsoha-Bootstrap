@@ -38,3 +38,11 @@ $routes->post('/kisa/:id/edit', function($id) {
 $routes->post('/kisa/:id/destroy', function($id) {
     KisaController::destroy($id);
 });
+
+$routes->get('/login', function(){
+  KirjautumisController::login();
+});
+
+$routes->post('/login', function(){
+  KirjautumisController::handle_login();
+});

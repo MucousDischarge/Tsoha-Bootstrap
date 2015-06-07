@@ -27,3 +27,8 @@ CREATE TABLE Kisanumero(
   kisa_id INTEGER REFERENCES Kisa(id),
   kisanumero SERIAL NOT NULL
 );
+
+CREATE TABLE Kayttaja( 
+  kayttajanimi varchar(30) PRIMARY KEY,
+  salasana varchar(30) NOT NULL
+);

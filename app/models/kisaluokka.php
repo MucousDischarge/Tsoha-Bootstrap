@@ -72,13 +72,13 @@ class Kisa extends BaseModel {
     }
 
     public function update() {
-        $query = DB::connection()->prepare('UPDATE SET nimi = , ajankohta =   WHERE id = :id');
-        $query->execute(array('nimi' => $this->nimi, 'ajankohta' => $this->ajankohta));
+        $query = DB::connection()->prepare('UPDATE SET nimi = :nimi, ajankohta = :ajankohta  WHERE id = :id');
+        $query->execute(array('id' => $this->id,'nimi' => $this->nimi, 'ajankohta' => $this->ajankohta));
     }
 
     public function destroy() {
         $query = DB::connection()->prepare('DELETE FROM Kisa WHERE id = :id');
-        $query->execute(array('id' => $id));
+        $query->execute(array('id' => $this->id));
     }
 
 }

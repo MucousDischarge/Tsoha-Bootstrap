@@ -8,7 +8,7 @@ class HelloWorldController extends BaseController {
     }
 
     public static function hallinta() {
-        View::make('hallintakirjautuminen.html');
+        View::make('kirjautuminen.html');
     }
 
     public static function sandbox() {

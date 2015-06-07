@@ -2,10 +2,11 @@
 
 class Kisa extends BaseModel {
 
-    public $id, $nimi, $ajankohta, $nippelitieto;
+    public $id, $nimi, $ajankohta;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validoi_nimi', 'validoi_ajankohta');
     }
 
     public static function all() {
@@ -18,8 +19,7 @@ class Kisa extends BaseModel {
             $kisat[] = new Kisa(array(
                 'id' => $row['id'],
                 'nimi' => $row['nimi'],
-                'ajankohta' => $row['ajankohta'],
-                'nippelitieto' => $row['nippelitieto']
+                'ajankohta' => $row['ajankohta']
             ));
         }
 
@@ -35,8 +35,7 @@ class Kisa extends BaseModel {
             $kisa = new Kisa(array(
                 'id' => $row['id'],
                 'nimi' => $row['nimi'],
-                'ajankohta' => $row['ajankohta'],
-                'nippelitieto' => $row['nippelitieto']
+                'ajankohta' => $row['ajankohta']
             ));
 
             return $kisa;
@@ -46,11 +45,40 @@ class Kisa extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Kisa (nimi, ajankohta, nippelitieto) VALUES (:nimi, :ajankohta, :nippelitieto) RETURNING id');
-        $query->execute(array('nimi' => $this->nimi, 'ajankohta' => $this->ajankohta, 'nippelitieto' => $this->nippelitieto));
+        $query = DB::connection()->prepare('INSERT INTO Kisa (nimi, ajankohta) VALUES (:nimi, :ajankohta) RETURNING id');
+        $query->execute(array('nimi' => $this->nimi, 'ajankohta' => $this->ajankohta));
         $row = $query->fetch();
-        
+
         $this->id = $row['id'];
+    }
+
+    public function errors() {
+        $validoi_ajankohta = 'validoi_ajankohta';
+        $validoi_nimi = 'validoi_nimi';
+        $errors = array_merge($this->{$validoi_ajankohta}(), $this->{$validoi_nimi}());
+        return $errors;
+    }
+
+    public function validoi_ajankohta() {
+        $errors = array();
+        if ($this->ajankohta == '' || $this->ajankohta == null) {
+            $errors[] = 'Ajankohta ei saa olla tyhjä!';
+        }
+        if (strlen($this->ajankohta) < 3) {
+            $errors[] = 'Ajankohdan pituuden tulee olla vähintään kolme merkkiä!';
+        }
+
+        return $errors;
+    }
+
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE SET nimi = , ajankohta =   WHERE id = :id');
+        $query->execute(array('nimi' => $this->nimi, 'ajankohta' => $this->ajankohta));
+    }
+
+    public function destroy() {
+        $query = DB::connection()->prepare('DELETE FROM Kisa WHERE id = :id');
+        $query->execute(array('id' => $id));
     }
 
 }

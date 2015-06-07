@@ -10,8 +10,7 @@
     <thead>
         <tr>
             <th>Nimi</th>
-            <th>Julkaisupäivä</th>
-            <th>Julkaisija</th>
+            <th>Ajankohta</th>
             <th>Muokkaa</th>
             <th></th>
         </tr>
@@ -22,7 +21,6 @@
         <tr>
             <td><a href="{{base_path}}/kisa/{{kisa.id}}">{{kisa.nimi}}</td>
             <td>{{kisa.ajankohta}}</td>
-            <td>{{kisa.nippelitieto}}</td>
             <td><a class="btn btn-default btn-sm" href="{{base_path}}/kisa/{{kisa.id}}/edit">Muokkaa</a></td>
         </tr>
         {% endfor %}

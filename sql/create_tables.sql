@@ -2,15 +2,13 @@
 
 CREATE TABLE Kisa(
   id SERIAL PRIMARY KEY, 
-  nimi varchar(50),
-  ajankohta date,
-  nippelitieto varchar(200)
+  nimi varchar(50) NOT NULL,
+  ajankohta timestamp
 );
 
 CREATE TABLE Kilpailija(
   id SERIAL PRIMARY KEY,
-  nimi varchar(50), 
-  nippelitieto varchar(200)
+  nimi varchar(50) NOT NULL
 );
 
 CREATE TABLE Valipiste(
@@ -27,5 +25,5 @@ CREATE TABLE Aika(
 CREATE TABLE Kisanumero(
   kilpailija_id INTEGER REFERENCES Kilpailija(id),
   kisa_id INTEGER REFERENCES Kisa(id),
-  kisanumero int 
+  kisanumero SERIAL NOT NULL
 );

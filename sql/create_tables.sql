@@ -23,7 +23,7 @@ CREATE TABLE Kisanumero(
   id SERIAL PRIMARY KEY, 
   kilpailija_id INTEGER REFERENCES Kilpailija(id) NOT NULL,
   kisa_id INTEGER REFERENCES Kisa(id) NOT NULL,
-  kisanumero SERIAL NOT NULL
+  kisanumero int NOT NULL
 );
 
 CREATE TABLE Kayttaja(

@@ -17,12 +17,14 @@ CREATE TABLE Valipiste(
 );
 
 CREATE TABLE Aika(
+  id SERIAL PRIMARY KEY, 
   valipiste_id INTEGER REFERENCES Valipiste(id),
   kilpailija_id INTEGER REFERENCES Kilpailija(id),
   aika timestamp
 );
 
 CREATE TABLE Kisanumero(
+  id SERIAL PRIMARY KEY, 
   kilpailija_id INTEGER REFERENCES Kilpailija(id),
   kisa_id INTEGER REFERENCES Kisa(id),
   kisanumero SERIAL NOT NULL

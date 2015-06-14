@@ -7,6 +7,8 @@
 </div>
 {% endif %}
 
+<h2><a href="{{base_path}}/kilpailija/{{kilpailija.id}}">{{kilpailija.nimi}}</a></h2>
+
 {% if user_logged_in %}
 <p><a class="btn btn-default btn-sm" href="{{base_path}}/kilpailija/{{kilpailija.id}}/edit">Muokkaa kilpailijan nimeä</a></p>
 {% endif %}
@@ -17,6 +19,7 @@
     <thead>
         <tr>
             <th>Nimi</th>
+            <th>Kilpailijan kisanumero</th>
             <th>Viimeisin aika</th>
             <th>Etappi</th>
         </tr>

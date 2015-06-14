@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 {% import "macros/forms.html" as forms %}
-<h1>Muokkaa kilpailijaa</h1>
+<h1>Muokkaa kisaa</h1>
 
 {% if errors %}
 <div class="alert alert-danger">
@@ -13,10 +13,15 @@
 </div>
 {% endif %}
 
-<form method="post" action="{{base_path}}/kilpailija/{{attributes.id}}/edit">
+<form method="post" action="{{base_path}}/kisanumero/{{attributes.id}}/edit">
     <div class="form-group">
-        <label class="control-label">Nimi</label>
+        <label class="control-label">Kisa-ID</label>
         <input type="text" name="nimi" class="form-control" value="{{attributes.nimi}}">
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Kilpailija-ID</label>
+        <input type="text" name="ajankohta" class="form-control" value="{{attributes.ajankohta}}">
     </div>
 
     <div class="form-group">
@@ -24,4 +29,5 @@
     </div>
 </form>
 
+{{forms.destroy_button("#{base_path}/kisa/#{attributes.id}/destroy")}}
 {% endblock %}

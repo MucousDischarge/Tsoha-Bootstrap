@@ -9,7 +9,6 @@
 Käyttäjätunnus on kayttajanimi ja salasana on salasana. 
 
 ###### Muut:
-- [Linkki hiekkalaatikolle](http://ezaalto.users.cs.helsinki.fi/hemohes/hiekkalaatikko)
 - [Linkki tietokantaani](http://ezaalto.users.cs.helsinki.fi/hemohes/tietokantayhteys)
 
 ## Työn aihe

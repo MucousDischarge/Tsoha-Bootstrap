@@ -23,6 +23,7 @@
         {% for kilpailija in kilpailijat %}
         <tr>
             <td><a href="{{base_path}}/kilpailija/{{kilpailija.id}}">{{kilpailija.nimi}}</td>
+            <td></td>
             {% if user_logged_in %}
             <td><a class="btn btn-default btn-sm" href="{{base_path}}/kilpailija/{{kilpailija.id}}/edit">Muokkaa</a></td>
             {% endif %}

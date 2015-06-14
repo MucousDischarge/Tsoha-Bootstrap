@@ -2,15 +2,15 @@
 
 class Kayttaja extends BaseModel {
 
-    public $kayttajanimi, $salasana;
+    public $id, $kayttajanimi, $salasana;
 
-    public static function blah() {
-        $query = DB::connection()->prepare('SELECT * FROM Player WHERE name = :name AND password = :password LIMIT 1', array('name' => $kayttajanimi, 'password' => $salasana));
+    public static function authenticate() {
+        $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE kayttajanimi = :kayttajanimi AND salasana = :kayttajanimi LIMIT 1', array('kayttajanimi' => $kayttajanimi, 'salasana' => $salasana));
         $query->execute();
         $row = $query->fetch();
         if ($row) {
             // Käyttäjä löytyi, palautetaan löytynyt käyttäjä oliona
-            return;
+            return $row;
         } else {
             // Käyttäjää ei löytynyt, palautetaan null
             return null;

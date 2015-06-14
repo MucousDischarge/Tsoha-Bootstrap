@@ -6,17 +6,7 @@
 * [Linkki sovellukseni etusivulle (toimii)](http://ezaalto.users.cs.helsinki.fi/hemohes/)
 * [Linkki dokumentaatiooni (päivitetty käyttöohjeella)](https://github.com/MucousDischarge/Tsoha-Bootstrap/blob/master/doc/dokumentaatio.pdf)
 
-Validointi ja erheiden tarkastaminen toimii.
-
-Tuhoaminen toimii, update vähän takkuilee.
-
-Makro tehty.
-
-Kirjautuminen takeltelee. Käyttäjätunnus on kayttajanimi ja salasana on salasana. Kayttajatietokohde luotu.
-
-Sessioita luonnosteltu basecontrolleriin.
-
-Käyttöohjeet luotu.
+Käyttäjätunnus on kayttajanimi ja salasana on salasana. 
 
 ###### Muut:
 - [Linkki hiekkalaatikolle](http://ezaalto.users.cs.helsinki.fi/hemohes/hiekkalaatikko)
@@ -28,7 +18,7 @@ Tein kisanumerosta serialin, kun kisoja lisäillessä sain huomata serial-muodos
 
 Lisäksi poistin kisasta ja kilpailijasta nippelitiedot, sillä kyseessä on pelkästään tulospalvelu, jonka käyttäjiä ei juurikaan kiinnosta nippelitieto. Se veisi paljon tilaa, ja sivu näyttää ilman sitä paljon selkeämmältä. Molemmilla on yhä nimet, ja kisalla ajankohta. Nippelitietojen sijaan voisi olla kuvia. Opetusmateriaalissa on tosin puhuttu vain tekstistä ja rukseista, joten jätän kuvien lähettämisen mahdolliseksi bonukseksi aivan lopulle, koska en osaa vielä kehittää kuvauppausjärjestelmää.
 
-Tosiaan kayttajatietokohde luotu.
+Käyttajätietokohde luotu.
 
 ## Työn aihe
 

@@ -11,4 +11,4 @@ INSERT INTO Aika (valipiste_id, kilpailija_id, aika) VALUES ((SELECT id from Val
 
 INSERT INTO Kisanumero(kilpailija_id, kisa_id, kisanumero) VALUES ((SELECT id from Kilpailija WHERE id=1234), (SELECT id from Kisa WHERE id=1), 1);
 
-INSERT INTO Kayttaja(kayttajanimi, salasana) VALUES ('kayttajanimi', 'salasana');
+INSERT INTO Kayttaja(id, kayttajanimi, salasana) VALUES (1, 'kayttajanimi', 'salasana');

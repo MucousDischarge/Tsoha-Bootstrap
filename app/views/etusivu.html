@@ -1,21 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Hiihtokisojen tulospalvelu</h1>
+<br>
+<h4>Ajankohtaiset kisat</h4>
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
             <th>Nimi</th>
             <th>Ajankohta</th>
-            <th></th>
         </tr>
     </thead>
 
     <tbody>
+        {% for kisa in kisat %}
         <tr>
-            <td>{{kisa.nimi}}</td>
+            <td><a href="{{base_path}}/kisa/{{kisa.id}}">{{kisa.nimi}}</td>
             <td>{{kisa.ajankohta}}</td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
-<h2>Tarkoituksella ei vielä näy mitään.</h2>
 {% endblock %}

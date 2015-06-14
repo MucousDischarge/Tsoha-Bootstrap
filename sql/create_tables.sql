@@ -28,7 +28,8 @@ CREATE TABLE Kisanumero(
   kisanumero SERIAL NOT NULL
 );
 
-CREATE TABLE Kayttaja( 
-  kayttajanimi varchar(30) PRIMARY KEY,
+CREATE TABLE Kayttaja(
+  id SERIAL PRIMARY KEY, 
+  kayttajanimi varchar(30) NOT NULL,
   salasana varchar(30) NOT NULL
 );

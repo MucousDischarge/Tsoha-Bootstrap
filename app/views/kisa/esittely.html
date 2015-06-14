@@ -1,25 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
 {% import "macros/forms.html" as forms %}
+{% if not message == false %}
 <div class="alert alert-success">
   {{message}}
 </div>
+{% endif %}
+
+<h2><a href="{{base_path}}/kisa/{{kisa.id}}">{{kisa.nimi}}</a></h2>
+<p>{{kisa.ajankohta}}</p>
+<p><a class="btn btn-default btn-sm" href="{{base_path}}/kisa/{{kisa.id}}/edit">Muokkaa</a></p>
+
+<h2>Tilanne</h2>
 
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
             <th>Nimi</th>
-            <th>Ajankohta</th>
-            <th>Muokkaa</th>
-            <th></th>
+            <th>Viimeisin aika</th>
+            <th>Etappi</th>
         </tr>
     </thead>
 
     <tbody>
         <tr>
-            <td><a href="{{base_path}}/kisa/{{kisa.id}}">{{kisa.nimi}}</td>
-            <td>{{kisa.ajankohta}}</td>
-            <td><a class="btn btn-default btn-sm" href="{{base_path}}/kisa/{{kisa.id}}/edit">Muokkaa</a></td>
         </tr>
     </tbody>
 </table>

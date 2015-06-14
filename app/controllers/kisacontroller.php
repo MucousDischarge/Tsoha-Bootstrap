@@ -49,6 +49,8 @@ class KisaController extends BaseController {
         'nimi' => $params['nimi'],
         'ajankohta' => $params['ajankohta']
         );
+        
+        Kint::dump($params);
 
         $kisa = new Kisa($attributes);
         $errors = $kisa->errors();

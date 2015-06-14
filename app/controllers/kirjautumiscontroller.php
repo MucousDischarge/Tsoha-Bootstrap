@@ -7,14 +7,14 @@ class KirjautumisController extends BaseController{
   public static function handle_login(){
     $params = $_POST;
 
-    $user = User::authenticate($params['username'], $params['password']);
+    $kayttaja = Kayttaja::authenticate($params['kayttajanimi'], $params['salasana']);
 
-    if(!$user){
-      View::make('user/kirjautuminen.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'username' => $params['username']));
+    if(!$kayttaja){
+      View::make('kayttaja/kirjautuminen.html', array('error' => 'Väärä käyttäjätunnus tai salasana!', 'kayttajanimi' => $params['kayttajanimi']));
     }else{
-      $_SESSION['user'] = $user->id;
+      $_SESSION['kayttaja'] = $kayttaja->id;
 
-      Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $user->name . '!'));
+      Redirect::to('/', array('message' => 'Tervetuloa takaisin ' . $kayttaja->kayttajanimi . '!'));
     }
   }
 }

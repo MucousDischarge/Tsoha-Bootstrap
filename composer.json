@@ -4,7 +4,8 @@
 			"config/database.php",
 			"lib",
 			"app/controllers",
-                        "app/models/kisaluokka.php"
+                        "app/models/kisaluokka.php",
+                        "app/models/kayttaja.php"
 		]
 	},
 	"require": {

@@ -11,22 +11,18 @@ CREATE TABLE Kilpailija(
   nimi varchar(50) NOT NULL
 );
 
-CREATE TABLE Valipiste(
-  id SERIAL PRIMARY KEY, 
-  kisa_id INTEGER REFERENCES Kisa(id)
-);
-
 CREATE TABLE Aika(
-  id SERIAL PRIMARY KEY, 
-  valipiste_id INTEGER REFERENCES Valipiste(id),
-  kilpailija_id INTEGER REFERENCES Kilpailija(id),
+  id SERIAL PRIMARY KEY,
+  kisa_id INTEGER REFERENCES Kisa(id) NOT NULL,
+  valipiste_id SERIAL NOT NULL,
+  kilpailija_id INTEGER REFERENCES Kilpailija(id) NOT NULL,
   aika timestamp
 );
 
 CREATE TABLE Kisanumero(
   id SERIAL PRIMARY KEY, 
-  kilpailija_id INTEGER REFERENCES Kilpailija(id),
-  kisa_id INTEGER REFERENCES Kisa(id),
+  kilpailija_id INTEGER REFERENCES Kilpailija(id) NOT NULL,
+  kisa_id INTEGER REFERENCES Kisa(id) NOT NULL,
   kisanumero SERIAL NOT NULL
 );
 

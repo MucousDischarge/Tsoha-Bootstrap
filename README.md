@@ -14,6 +14,8 @@ Käyttäjätunnus on kayttajanimi ja salasana on salasana.
 ###### Muut:
 - [Linkki tietokantaani](http://ezaalto.users.cs.helsinki.fi/hemohes/tietokantayhteys)
 
+Poistin välipistetietokannan, koska lisäämällä kisa_id:n aikatietokantaan sain hoidettua välipistetietokannan ainoan tehtävän eli välipisteen ja kisan yhdistämisen. Tämä yksinkertaisti kyselyitä.
+
 ## Työn aihe
 
 http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Hiihtokisojen_tulospalvelu.html

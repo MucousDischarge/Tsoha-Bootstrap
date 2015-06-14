@@ -8,6 +8,9 @@
 
 Käyttäjätunnus on kayttajanimi ja salasana on salasana. 
 
+- Uloskirjautuminen ja estot kirjautumattomille tehty.
+- Kilpailijan toimenpiteet ja sivut lisätty.
+
 ###### Muut:
 - [Linkki tietokantaani](http://ezaalto.users.cs.helsinki.fi/hemohes/tietokantayhteys)
 

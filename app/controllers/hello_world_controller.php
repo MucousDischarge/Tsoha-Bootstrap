@@ -7,7 +7,7 @@ class HelloWorldController extends BaseController {
         View::make('etusivu.html', array('kisat' => $kisat));
     }
 
-    public static function hallinta() {
+    public static function kirjautuminen() {
         View::make('/user/kirjautuminen.html');
     }
 

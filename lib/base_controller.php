@@ -3,8 +3,8 @@
 class BaseController {
 
     public static function get_user_logged_in() {
-        if (isset($_SESSION['kayttajanimi'])) {
-            $kayttaja_id = $_SESSION['kayttajanimi'];
+        if (isset($_SESSION['kayttaja'])) {
+            $kayttaja_id = $_SESSION['kayttaja'];
             $kayttaja = Kayttaja::find($kayttaja_id);
 
             return $kayttaja;
@@ -14,8 +14,8 @@ class BaseController {
     }
 
     public static function check_logged_in() {
-        if(!(isset($_SESSION['kayttajanimi']))){
-            Redirect::to('/login');
+        if(!isset($_SESSION['kayttaja'])){
+            Redirect::to('/login', array('message' => 'Kirjaudu ensin sisään!'));
         }
     }
 

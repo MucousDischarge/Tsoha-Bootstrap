@@ -3,7 +3,7 @@
 class Kayttaja extends BaseModel {
 
     public $id, $kayttajanimi, $salasana;
-    
+
     public function __construct($attributes) {
         parent::__construct($attributes);
     }
@@ -23,7 +23,7 @@ class Kayttaja extends BaseModel {
             return null;
         }
     }
-    
+
     public static function find($kayttaja_id) {
         $query = DB::connection()->prepare('SELECT * FROM Kayttaja WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $kayttaja_id));
@@ -39,4 +39,5 @@ class Kayttaja extends BaseModel {
             return null;
         }
     }
+
 }

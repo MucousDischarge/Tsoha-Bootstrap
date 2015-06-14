@@ -8,10 +8,12 @@ class KisaController extends BaseController {
     }
 
     public static function lisaysnakyma() {
+        self::check_logged_in();
         View::make('kisa/new.html');
     }
 
     public static function lisays() {
+        self::check_logged_in();
         $params = $_POST;
         $attributes = array(
             'nimi' => $params['nimi'],
@@ -37,6 +39,7 @@ class KisaController extends BaseController {
     }
     
     public static function edit($id) {
+        self::check_logged_in();
         $kisa = Kisa::find($id);
         View::make('kisa/edit.html', array('attributes' => $kisa));
     }
@@ -65,6 +68,7 @@ class KisaController extends BaseController {
     }
 
     public static function destroy($id) {
+        self::check_logged_in();
         $kisa = new Kisa(array('id' => $id));
         $kisa->destroy();
 

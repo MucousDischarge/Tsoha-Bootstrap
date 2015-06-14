@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
+{% if not message == false %}
+<div class="alert alert-success">
+  {{message}}
+</div>
+{% endif %}
+
 <h1>Hiihtokisojen tulospalvelu</h1>
 <br>
 <h4>Ajankohtaiset kisat</h4>
@@ -8,6 +14,9 @@
         <tr>
             <th>Nimi</th>
             <th>Ajankohta</th>
+            {% if user_logged_in %}
+            <th>Muokkaa</th>
+            {% endif %}
         </tr>
     </thead>
 
@@ -16,6 +25,9 @@
         <tr>
             <td><a href="{{base_path}}/kisa/{{kisa.id}}">{{kisa.nimi}}</td>
             <td>{{kisa.ajankohta}}</td>
+            {% if user_logged_in %}
+            <td><a class="btn btn-default btn-sm" href="{{base_path}}/kisa/{{kisa.id}}/edit">Muokkaa</a></td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>

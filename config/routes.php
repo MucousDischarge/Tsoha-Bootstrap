@@ -8,8 +8,8 @@ $routes->get('/hiekkalaatikko', function() {
     HelloWorldController::sandbox();
 });
 
-$routes->get('/hallinta', function() {
-    HelloWorldController::hallinta();
+$routes->get('/kirjautuminen', function() {
+    HelloWorldController::kirjautuminen();
 });
 
 $routes->get('/kisa', function() {
@@ -45,4 +45,8 @@ $routes->get('/login', function(){
 
 $routes->post('/login', function(){
   KirjautumisController::handle_login();
+});
+
+$routes->post('/logout', function(){
+  KirjautumisController::logout();
 });

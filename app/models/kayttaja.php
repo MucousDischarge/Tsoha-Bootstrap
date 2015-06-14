@@ -6,6 +6,7 @@ class Kayttaja extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validoi_nimi', 'validoi_salasana');
     }
 
     public static function authenticate($kayttajanimi, $salasana) {

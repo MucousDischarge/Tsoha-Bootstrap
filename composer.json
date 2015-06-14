@@ -5,7 +5,8 @@
 			"lib",
 			"app/controllers",
                         "app/models/kisaluokka.php",
-                        "app/models/kayttaja.php"
+                        "app/models/kayttaja.php",
+                        "app/models/kilpailijaluokka.php"
 		]
 	},
 	"require": {

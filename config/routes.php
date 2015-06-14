@@ -50,3 +50,30 @@ $routes->post('/login', function(){
 $routes->post('/logout', function(){
   KirjautumisController::logout();
 });
+
+$routes->get('/kilpailija', function() {
+    KilpailijaController::index();
+});
+
+$routes->get('/kilpailija/lisays', function() {
+    KilpailijaController::lisaysnakyma();
+});
+
+$routes->post('/kilpailija/', function() {
+    KilpailijaController::lisays();
+});
+
+$routes->get('/kilpailija/:id', function($id) {
+    KilpailijaController::esittely($id);
+});
+
+$routes->get('/kilpailija/:id/edit', function($id) {
+    KilpailijaController::edit($id);
+});
+$routes->post('/kilpailija/:id/edit', function($id) {
+    KilpailijaController::update($id);
+});
+
+$routes->post('/kilpailija/:id/destroy', function($id) {
+    KilpailijaController::destroy($id);
+});

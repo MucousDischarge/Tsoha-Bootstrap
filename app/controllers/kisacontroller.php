@@ -28,7 +28,6 @@ class KisaController extends BaseController {
 
             Redirect::to('/kisa/' . $kisa->id, array('message' => 'Kisa on lisätty listaan!'));
         } else {
-            // Pelissä oli jotain vikaa :(
             View::make('kisa/new.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
@@ -52,8 +51,6 @@ class KisaController extends BaseController {
         'nimi' => $params['nimi'],
         'ajankohta' => $params['ajankohta']
         );
-        
-        Kint::dump($params);
 
         $kisa = new Kisa($attributes);
         $errors = $kisa->errors();

@@ -16,6 +16,10 @@ $routes->get('/kisa', function() {
     KisaController::index();
 });
 
+$routes->get('/kisa/haku', function() {
+    KisaController::haku();
+});
+
 $routes->get('/kisa/lisays', function() {
     KisaController::lisaysnakyma();
 });
@@ -53,6 +57,10 @@ $routes->post('/logout', function(){
 
 $routes->get('/kilpailija', function() {
     KilpailijaController::index();
+});
+
+$routes->get('/kilpailija/haku', function() {
+    KilpailijaController::haku();
 });
 
 $routes->get('/kilpailija/lisays', function() {

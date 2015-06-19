@@ -16,10 +16,7 @@ class Kilpailija extends BaseModel {
         $kilpailijat = array();
 
         foreach ($rows as $row) {
-            $kilpailijat[] = new Kilpailija(array(
-                'id' => $row['id'],
-                'nimi' => $row['nimi']
-            ));
+            $kilpailijat[] = new Kilpailija($row);
         }
 
         return $kilpailijat;
@@ -31,10 +28,7 @@ class Kilpailija extends BaseModel {
         $row = $query->fetch();
 
         if ($row) {
-            $kilpailija = new Kilpailija(array(
-                'id' => $row['id'],
-                'nimi' => $row['nimi']
-            ));
+            $kilpailija = new Kilpailija($row);
 
             return $kilpailija;
         }

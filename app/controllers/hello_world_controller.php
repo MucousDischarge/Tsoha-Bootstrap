@@ -3,8 +3,12 @@
 class HelloWorldController extends BaseController {
 
     public static function index() {
-        $kisat = Kisa::all();
-        View::make('etusivu.html', array('kisat' => $kisat));
+        $options = array();
+        $kisat = Kisa::all($options);
+        $kisat_count = Kisa::count();
+        $page_size = 10;
+        $pages = ceil($kisat_count / $page_size);
+        View::make('etusivu.html', array('kisat' => $kisat, 'pages' => $pages));
     }
 
     public static function kirjautuminen() {

@@ -9,18 +9,33 @@ class Kisa extends BaseModel {
         $this->validators = array('validoi_nimi', 'validoi_ajankohta');
     }
 
-    public static function all() {
-        $query = DB::connection()->prepare('SELECT * FROM Kisa');
-        $query->execute();
+    public static function all($options) {
+        $query_string = 'SELECT * FROM Kisa';
+
+        if (isset($options['page']) && isset($options['page_size'])) {
+            $page_size = $options['page_size'];
+            $page = $options['page'];
+        } else {
+            $page_size = 10;
+            $page = 1;
+        }
+        
+        $options['limit'] = $page_size;
+        $options['offset'] = $page_size * ($page - 1);
+
+        if (isset($options['search'])) {
+            $query_string .= ' WHERE nimi LIKE :search';
+        }
+        
+        $query_string .= ' LIMIT :limit, OFFSET :offset';
+        $query = DB::connection()->prepare($query_string);
+        
+        $query->execute($options);
         $rows = $query->fetchAll();
         $kisat = array();
 
         foreach ($rows as $row) {
-            $kisat[] = new Kisa(array(
-                'id' => $row['id'],
-                'nimi' => $row['nimi'],
-                'ajankohta' => $row['ajankohta']
-            ));
+            $kisat[] = new Kisa($row);
         }
 
         return $kisat;
@@ -32,11 +47,7 @@ class Kisa extends BaseModel {
         $row = $query->fetch();
 
         if ($row) {
-            $kisa = new Kisa(array(
-                'id' => $row['id'],
-                'nimi' => $row['nimi'],
-                'ajankohta' => $row['ajankohta']
-            ));
+            $kisa = new Kisa($row);
 
             return $kisa;
         }
@@ -79,6 +90,19 @@ class Kisa extends BaseModel {
     public function destroy() {
         $query = DB::connection()->prepare('DELETE FROM Kisa WHERE id = :id');
         $query->execute(array('id' => $this->id));
+    }
+
+    public function count() {
+        $query = DB::connection()->prepare('SELECT * FROM Kisa');
+        $query->execute();
+        $rows = $query->fetchAll();
+        $kisat = 0;
+
+        foreach ($rows as $row) {
+            $kisat++;
+        }
+
+        return $kisat;
     }
 
 }

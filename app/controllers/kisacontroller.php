@@ -3,10 +3,22 @@
 class KisaController extends BaseController {
 
     public static function index() {
-        $kisat = Kisa::all();
-        View::make('kisa/index.html', array('kisat' => $kisat));
-    }
+        $params = $_GET;
+        $options = array();
 
+        if (isset($params['search'])) {
+            $options = array('search' => $params['search']);
+        } else {
+            $options = array();
+        }
+
+        $kisat = Kisa::all($options);
+        $kisat_count = Kisa::count();
+        $page_size = 10;
+        $pages = ceil($kisat_count / $page_size);
+        View::make('etusivu.html', array('kisat' => $kisat, 'pages' => $pages));
+    }
+    
     public static function lisaysnakyma() {
         self::check_logged_in();
         View::make('kisa/new.html');

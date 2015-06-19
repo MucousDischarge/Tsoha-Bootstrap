@@ -9,7 +9,6 @@
   margin: 0px auto;
 }
 
-#oikea { 
-    float: right;
-    margin-right: 20px;
+#haku {
+    display: inline;
 }

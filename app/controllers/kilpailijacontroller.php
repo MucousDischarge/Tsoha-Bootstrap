@@ -68,7 +68,7 @@ class KilpailijaController extends BaseController {
         $kilpailija = new Kilpailija(array('id' => $id));
         $kilpailija->destroy();
 
-        Redirect::to('/kilpailija/', array('message' => 'Kilpailija on poistettu onnistuneesti!'));
+        Redirect::to('/kilpailija', array('message' => 'Kilpailija on poistettu onnistuneesti!'));
     }
 
 }

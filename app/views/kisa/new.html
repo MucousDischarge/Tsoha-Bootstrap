@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
   
-  <h1>Kilpailijanumeropalvelu</h1>
+  <h1>Kisalisäyspalvelu</h1>
 
   {% if errors %}
     <div class="alert alert-danger">
@@ -15,12 +15,12 @@
 
   <form method="post" action="{{base_path}}/kisa">
     <div class="form-group">
-      <label class="control-label">Kisa-ID</label>
+      <label class="control-label">Kisan nimi</label>
       <input type="text" name="nimi" class="form-control" value="{{attributes.nimi}}">
     </div>
 
     <div class="form-group">
-      <label class="control-label">Kilpailija-ID</label>
+      <label class="control-label">Ajankohta</label>
       <input type="text" name="ajankohta" class="form-control" value="{{attributes.ajankohta}}">
     </div>
 

@@ -4,19 +4,12 @@ class KisaController extends BaseController {
 
     public static function index() {
         $params = $_GET;
-        
+        $options = array();
+
         if (isset($params['search'])) {
-            if (isset($_GET['page'])) {
-                $options = array('search' => $params['search'], 'page' => $_GET['page']);
-            } else {
-                $options = array('search' => $params['search']);
-            }
+            $options = array('search' => $params['search']);
         } else {
-            if (isset($_GET['page'])) {
-                $options = array('page' => $_GET['page']);
-            } else {
-                $options = array();
-            }
+            $options = array();
         }
 
         $kisat = Kisa::all($options);
@@ -25,7 +18,7 @@ class KisaController extends BaseController {
         $pages = ceil($kisat_count / $page_size);
         View::make('kisa/index.html', array('kisat' => $kisat, 'pages' => $pages));
     }
-
+    
     public static function lisaysnakyma() {
         self::check_logged_in();
         View::make('kisa/new.html');
@@ -55,7 +48,7 @@ class KisaController extends BaseController {
         $kisa = Kisa::find($id);
         View::make('kisa/esittely.html', array('kisa' => $kisa));
     }
-
+    
     public static function edit($id) {
         self::check_logged_in();
         $kisa = Kisa::find($id);
@@ -66,9 +59,9 @@ class KisaController extends BaseController {
         $params = $_POST;
 
         $attributes = array(
-            'id' => $id,
-            'nimi' => $params['nimi'],
-            'ajankohta' => $params['ajankohta']
+        'id' => $id,
+        'nimi' => $params['nimi'],
+        'ajankohta' => $params['ajankohta']
         );
 
         $kisa = new Kisa($attributes);

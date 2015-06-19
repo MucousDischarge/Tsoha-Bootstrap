@@ -4,7 +4,6 @@ class KisaController extends BaseController {
 
     public static function index() {
         $params = $_GET;
-        $options = array();
 
         if (isset($params['search'])) {
             $options = array('search' => $params['search']);

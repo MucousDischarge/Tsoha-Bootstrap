@@ -27,7 +27,7 @@ class Kisa extends BaseModel {
             $query_string .= ' WHERE nimi LIKE :search';
         }
         
-        $query_string .= ' LIMIT :limit, OFFSET :offset';
+        $query_string .= ' LIMIT :limit OFFSET :offset';
         $query = DB::connection()->prepare($query_string);
         
         $query->execute($options);

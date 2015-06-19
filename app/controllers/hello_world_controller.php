@@ -3,7 +3,6 @@
 class HelloWorldController extends BaseController {
 
     public static function index($page) {
-        echo $page;
         $options = array();
         $kisat = Kisa::all($options, $page);
         $kisat_count = Kisa::count();

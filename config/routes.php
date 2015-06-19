@@ -5,8 +5,8 @@ $routes->get('/', function() {
     HelloWorldController::index($sivu);
 });
 
-$routes->get('/?page=:sivu', function($page) {
-    HelloWorldController::index($page);
+$routes->get('/listaussivu/:sivu', function($sivu) {
+    HelloWorldController::index($sivu);
 });
 
 $routes->get('/hiekkalaatikko', function() {
@@ -22,8 +22,8 @@ $routes->get('/kisa', function() {
     KisaController::index($sivu);
 });
 
-$routes->get('/kisa?page=:sivu', function($page) {
-    KisaController::index($page);
+$routes->get('/kisa/listaussivu/:sivu', function($sivu) {
+    KisaController::index($sivu);
 });
 
 $routes->get('/kisa/lisays', function() {

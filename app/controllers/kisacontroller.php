@@ -3,7 +3,6 @@
 class KisaController extends BaseController {
 
     public static function index($page) {
-        echo $page;
         $params = $_GET;
 
         if (isset($params['search'])) {

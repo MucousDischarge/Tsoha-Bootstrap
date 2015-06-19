@@ -9,15 +9,13 @@ class Kisa extends BaseModel {
         $this->validators = array('validoi_nimi', 'validoi_ajankohta');
     }
 
-    public static function all($options) {
+    public static function all($options, $page) {
         $query_string = 'SELECT * FROM Kisa';
 
-        if (isset($options['page']) && isset($options['page_size'])) {
+        if (isset($options['page_size'])) {
             $page_size = $options['page_size'];
-            $page = $options['page'];
         } else {
             $page_size = 10;
-            $page = 1;
         }
         
         $options['limit'] = $page_size;

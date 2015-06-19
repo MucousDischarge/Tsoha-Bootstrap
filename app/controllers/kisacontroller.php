@@ -2,7 +2,8 @@
 
 class KisaController extends BaseController {
 
-    public static function index() {
+    public static function index($page) {
+        echo $page;
         $params = $_GET;
 
         if (isset($params['search'])) {
@@ -10,8 +11,8 @@ class KisaController extends BaseController {
         } else {
             $options = array();
         }
-
-        $kisat = Kisa::all($options);
+        
+        $kisat = Kisa::all($options, $page);
         $kisat_count = Kisa::count();
         $page_size = 10;
         $pages = ceil($kisat_count / $page_size);

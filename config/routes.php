@@ -1,7 +1,12 @@
 <?php
 
 $routes->get('/', function() {
-    HelloWorldController::index();
+    $sivu = 1;
+    HelloWorldController::index($sivu);
+});
+
+$routes->get('/?page=:sivu', function($page) {
+    HelloWorldController::index($page);
 });
 
 $routes->get('/hiekkalaatikko', function() {
@@ -13,7 +18,12 @@ $routes->get('/kirjautuminen', function() {
 });
 
 $routes->get('/kisa', function() {
-    KisaController::index();
+    $sivu = 1;
+    KisaController::index($sivu);
+});
+
+$routes->get('/kisa?page=:sivu', function($page) {
+    KisaController::index($page);
 });
 
 $routes->get('/kisa/lisays', function() {

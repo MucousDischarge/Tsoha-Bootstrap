@@ -27,8 +27,8 @@
             <th>Kisanumero</th>
             <th>Viimeisin aika</th>
             <th>Etappi</th>
-            {% if user_logger_in %}
-            <th>Poista kisasta</th>
+            {% if user_logged_in %}
+            <th>Poista kilpailija</th> 
             {% endif %}
         </tr>
     </thead>
@@ -41,7 +41,7 @@
             <td>{{kilpailija.aika}}</td>
             <td>{{kilpailija.valipiste_id}}</td>
             <td>{% if user_logged_in %}
-                {{forms.destroy_button("#{base_path}/kisa/kisanumero/destroy/#{kisa.id}/{kilpailija.kilpailija_id}")
+                {{forms.destroy_button("#{base_path}/kisa/kisanumero/destroy/#{kisa.id}/kilpailija.kilpailija_id")}}
                 {% endif %}</td>
         </tr>
         {% endfor %}

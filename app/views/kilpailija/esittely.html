@@ -22,6 +22,9 @@
             <th>Kilpailijan kisanumero</th>
             <th>Viimeisin aika</th>
             <th>Etappi</th>
+            {% if user_logged_in %}
+            <th>Poista kisasta</th> 
+            {% endif %}
         </tr>
     </thead>
 
@@ -32,6 +35,9 @@
             <td>{{kisa.kisanumero}}</td>
             <td>{{kisa.aika}}</td>
             <td>{{kisa.valipiste_id}}</td>
+            <td>{% if user_logged_in %}
+                {{forms.destroy_button("#{base_path}/kilpailija/kisanumero/destroy/kisa.id/kilpailija.kilpailija_id")}}
+                {% endif %}</td>
         </tr>
         {% endfor %}
     </tbody>

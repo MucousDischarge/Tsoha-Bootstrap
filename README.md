@@ -8,15 +8,9 @@
 
 Käyttäjätunnus on kayttajanimi ja salasana on salasana. 
 
-- Uloskirjautuminen ja estot kirjautumattomille tehty.
-- Kilpailijan toimenpiteet ja sivut lisätty.
-- Dokumentaatioon järjestelmän yleisrakenne sekä käyttöliittymän ja järjestelmä komponentteja luova kaavio luotu.
-
 
 ###### Muut:
 - [Linkki tietokantaani](http://ezaalto.users.cs.helsinki.fi/hemohes/tietokantayhteys)
-
-Poistin välipistetietokannan, koska lisäämällä kisa_id:n aikatietokantaan sain hoidettua välipistetietokannan ainoan tehtävän eli välipisteen ja kisan yhdistämisen. Tämä yksinkertaisti kyselyitä.
 
 ## Työn aihe
 

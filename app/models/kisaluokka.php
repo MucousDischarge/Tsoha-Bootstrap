@@ -105,6 +105,24 @@ class Kisa extends BaseModel {
         return $kisat;
     }
     
+    public function count_esittely($kisat) {
+        $maara = 0;
+
+        foreach ($kisat as $kisa) {
+            $maara++;
+        }
+
+        return $maara;
+    }
+    
+    public function return_valipisteet($kisa) {
+        $query = DB::connection()->prepare('SELECT DISTINCT valipiste_id FROM Aika WHERE kisa_id = :kisa_id');
+        $query->execute(array('kisa_id' => $kisa));
+        $rows = $query->fetchAll();
+
+        return $rows;
+    }
+    
     public static function nimi($kisa) {
         $query = DB::connection()->prepare('SELECT nimi FROM Kisa WHERE id = :id LIMIT 1');
         $query->execute(array('id' => $kisa[0]));

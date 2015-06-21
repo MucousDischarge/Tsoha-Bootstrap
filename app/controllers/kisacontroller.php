@@ -43,9 +43,23 @@ class KisaController extends BaseController {
         }
     }
 
-    public static function esittely($id) {
+    public static function esittely($id, $page) {
         $kisa = Kisa::find($id);
-        View::make('kisa/esittely.html', array('kisa' => $kisa));
+        $kaikkikilpailijat = Aika::kaikkikilpailijat($id, $page);
+        $kilpailijat_count = Kilpailija::count_esittely($kaikkikilpailijat);
+        $valipisteet = Kisa::return_valipisteet($id);
+        $page_size = 10;
+        $pages = ceil($kilpailijat_count / $page_size);
+        foreach ($kaikkikilpailijat as $kilpailija) {
+            $aika = Aika::kisa_all($id, $kilpailija);
+            $nimi = Kilpailija::nimi($kilpailija);
+            if (isset($aika[2])) {
+                $array[] = array('kilpailija_nimi' => $nimi, 'kisa_id' => $kilpailija[0], 'valipiste_id' => $aika[0], 'kisanumero' => $aika[1], 'aika' => $aika[2]);
+            } else {
+                $array[] = array('kilpailija_nimi' => $nimi, 'kisa_id' => $kilpailija[0], 'valipiste_id' => '1', 'kisanumero' => $aika[0], 'aika' => "Ei ole aloittanut.");
+            }
+        }
+        View::make('kisa/esittely.html', array('kisa' => $kisa, 'kilpailijat' => $array, 'pages' => $pages, 'valipisteet' => $valipisteet));
     }
     
     public static function edit($id) {
@@ -83,4 +97,22 @@ class KisaController extends BaseController {
         Redirect::to('/kisa', array('message' => 'Kisa on poistettu onnistuneesti!'));
     }
 
+    public static function valipiste_esittely($id, $valipiste, $page) {
+        $kisa = Kisa::find($id);
+        $kaikkikilpailijat = Aika::kaikkikilpailijat($id, $page);
+        $kilpailijat_count = Kilpailija::count_esittely($kaikkikilpailijat);
+        $valipiste_count = Kisa::return_valipisteet($id);
+        $page_size = 10;
+        $pages = ceil($kilpailijat_count / $page_size);
+        foreach ($kaikkikilpailijat as $kilpailija) {
+            $aika = Aika::kisa_all($id, $kilpailija, $valipiste);
+            $nimi = Kilpailija::nimi($kilpailija);
+            if (isset($aika[2])) {
+                $array[] = array('kilpailija_nimi' => $nimi, 'kisa_id' => $kilpailija[0], 'valipiste_id' => $aika[0], 'kisanumero' => $aika[1], 'aika' => $aika[2]);
+            } else {
+                $array[] = array('kilpailija_nimi' => $nimi, 'kisa_id' => $kilpailija[0], 'valipiste_id' => '1', 'kisanumero' => $aika[0], 'aika' => "Ei ole aloittanut.");
+            }
+        }
+        View::make('kisa/valipiste.html', array('kisa' => $kisa, 'kilpailijat' => $array, 'pages' => $pages, 'valipisteet' => $valipiste_count));
+    }
 }

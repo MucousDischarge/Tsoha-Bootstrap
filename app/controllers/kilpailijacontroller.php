@@ -10,7 +10,7 @@ class KilpailijaController extends BaseController {
         } else {
             $options = array();
         }
-        
+
         $kilpailijat = Kilpailija::all($options, $page);
         $kilpailijat_count = Kilpailija::count();
         $page_size = 10;
@@ -46,18 +46,24 @@ class KilpailijaController extends BaseController {
         }
     }
 
-    public static function esittely($id) {
+    public static function esittely($id, $page) {
         $kilpailija = Kilpailija::find($id);
-        $kaikkikisat = Aika::kaikkikisat($id);
+        $kaikkikisat = Aika::kaikkikisat($id, $page);
+        $kisat_count = Kisa::count_esittely($kaikkikisat);
+        $page_size = 10;
+        $pages = ceil($kisat_count / $page_size);
         foreach ($kaikkikisat as $kisa) {
-            echo $kisa;
             $aika = Aika::kilpailija_all($id, $kisa);
             $nimi = Kisa::nimi($kisa);
-            $array[] = array('kisa_nimi' => $nimi, 'kisa_id' => $kisa, 'valipiste_id' => $aika[0], 'kisanumero' => $aika[1], 'aika' => $aika[2]);
+            if (isset($aika[2])) {
+                $array[] = array('kisa_nimi' => $nimi, 'kisa_id' => $kisa[0], 'valipiste_id' => $aika[0], 'kisanumero' => $aika[1], 'aika' => $aika[2]);
+            } else {
+                $array[] = array('kisa_nimi' => $nimi, 'kisa_id' => $kisa[0], 'valipiste_id' => '1', 'kisanumero' => $aika[0], 'aika' => "Kisa ei alkanut.");
+            }
         }
-        View::make('kilpailija/esittely.html', array('kilpailija' => $kilpailija, 'kisat' => $array));
+        View::make('kilpailija/esittely.html', array('kilpailija' => $kilpailija, 'kisat' => $array, 'pages' => $pages));
     }
-    
+
     public static function edit($id) {
         self::check_logged_in();
         $kilpailija = Kilpailija::find($id);
@@ -68,8 +74,8 @@ class KilpailijaController extends BaseController {
         $params = $_POST;
 
         $attributes = array(
-        'id' => $id,
-        'nimi' => $params['nimi']
+            'id' => $id,
+            'nimi' => $params['nimi']
         );
 
         $kilpailija = new Kilpailija($attributes);
@@ -79,9 +85,8 @@ class KilpailijaController extends BaseController {
             $kilpailija->update();
 
             Redirect::to('/kilpailija/' . $kilpailija->id, array('message' => 'Kilpailijaa on muokattu onnistuneesti!'));
-          
         } else {
-           View::make('kilpailija/edit.html', array('errors' => $errors, 'attributes' => $attributes));  
+            View::make('kilpailija/edit.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
 

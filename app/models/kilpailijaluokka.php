@@ -104,5 +104,22 @@ class Kilpailija extends BaseModel {
 
         return $kilpailijat;
     }
+    
+    public function count_esittely($kilpailijat) {
+        $maara = 0;
 
+        foreach ($kilpailijat as $kilpailijat) {
+            $maara++;
+        }
+
+        return $maara;
+    }
+
+    public static function nimi($kilpailija) {
+        $query = DB::connection()->prepare('SELECT nimi FROM Kilpailija WHERE id = :id LIMIT 1');
+        $query->execute(array('id' => $kilpailija[0]));
+        $row = $query->fetch();
+
+        return $row[0];
+    }
 }

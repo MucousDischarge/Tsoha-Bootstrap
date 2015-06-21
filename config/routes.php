@@ -34,7 +34,19 @@ $routes->post('/kisa/', function() {
 });
 
 $routes->get('/kisa/:id', function($id) {
-    KisaController::esittely($id);
+    KisaController::esittely($id, 1);
+});
+
+$routes->get('/kisa/:id/listaussivu/:sivu', function($id, $sivu) {
+    KisaController::esittely($id, $sivu);
+});
+
+$routes->get('/kisa/:id/:valipiste', function($id, $valipiste) {
+    KisaController::valipiste_esittely($id, $valipiste, 1);
+});
+
+$routes->get('/kisa/:id/:valipiste/listaussivu/:sivu', function($id, $valipiste, $sivu) {
+    KisaController::valipiste_esittely($id, $valipiste, $sivu);
 });
 
 $routes->get('/kisa/:id/edit', function($id) {
@@ -77,7 +89,11 @@ $routes->post('/kilpailija/', function() {
 });
 
 $routes->get('/kilpailija/:id', function($id) {
-    KilpailijaController::esittely($id);
+    KilpailijaController::esittely($id, 1);
+});
+
+$routes->get('/kilpailija/:id/listaussivu/:sivu', function($id, $sivu) {
+    KilpailijaController::index($id, $sivu);
 });
 
 $routes->get('/kilpailija/:id/edit', function($id) {

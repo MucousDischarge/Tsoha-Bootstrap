@@ -3,6 +3,7 @@
 CREATE TABLE Kisa(
   id SERIAL PRIMARY KEY, 
   nimi varchar(50) NOT NULL,
+  valipisteet int NOT NULL,
   ajankohta timestamp NOT NULL
 );
 

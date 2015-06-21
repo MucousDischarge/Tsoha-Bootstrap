@@ -7,9 +7,9 @@ class Aika extends BaseModel {
         $this->validators = array('validoi_kisa_id', 'validoi_kilpailija_id', 'validoi_kisanumero');
     }
 
-    public function save($attributes) {
+    public function save($params) {
         $query = DB::connection()->prepare('INSERT INTO Aika (kisa_id, valipiste_id, kilpailija_id, kisanumero) VALUES (:kisa_id, 1, :kilpailija_id, :kisanumero)');
-        $query->execute(array('nimi' => $params['kisa_id'], 'ajankohta' => $params['kilpailija_id'], 'kisanumero' => $params['kisanumero']));
+        $query->execute(array('kisa_id' => $params['kisa_id'], 'kilpailija_id' => $params['kilpailija_id'], 'kisanumero' => $params['kisanumero']));
         $row = $query->fetch();
     }
 
@@ -85,12 +85,12 @@ class Aika extends BaseModel {
         return $testrow;
     }
     
-    public static function kisa_all_haku($id, $kilpailija, $valipiste_id) {
+    public static function kisa_all_valipiste($id, $kilpailija, $valipiste_id) {
         $query_stringtest = 'SELECT kisanumero, aika';
         $query_stringtest .= ' FROM Aika WHERE kilpailija_id = :kilpailija_id AND kisa_id = :kisa_id';
-        $query_stringtest .= ' AND valipiste_id = (SELECT max(valipiste_id) FROM Aika WHERE kilpailija_id = :kilpailija_id AND kisa_id = :kisa_id)';
+        $query_stringtest .= ' AND valipiste_id = :valipiste_id';
         $querytest = DB::connection()->prepare($query_stringtest);
-        $querytest->execute(array('kisa_id' => $id, 'kilpailija_id' => $kilpailija[0]));
+        $querytest->execute(array('kisa_id' => $id, 'kilpailija_id' => $kilpailija[0], 'valipiste_id' => $valipiste_id));
         $testrow = $querytest->fetch();
         if (isset($testrow[1])) {
             $query_string = 'SELECT valipiste_id, kisanumero, aika';
@@ -123,11 +123,11 @@ class Aika extends BaseModel {
         return $kisanimi[0];
     }
 
-    public function errors($attributes) {
-        $validoi_kisa_id = 'validoi_kisa_id';
-        $validoi_kilpailija_id = 'validoi_kilpailija_id';
-        $validoi_kisanumero = 'validoi_kisanumero';
-        $errors = array_merge($this->{$validoi_kisa_id}(), $this->{$validoi_kilpailija_id}, $this->{$validoi_kisanumero}());
+    public function errors($params) {
+        $validoi_kisa_id = Aika::validoi_kisa_id($params['kisa_id']);
+        $validoi_kilpailija_id = Aika::validoi_kilpailija_id($params['kilpailija_id']);
+        $validoi_kisanumero = Aika::validoi_kisanumero($params);
+        $errors = array_merge($validoi_kisa_id, $validoi_kilpailija_id, $validoi_kisanumero);
         return $errors;
     }
 
@@ -152,7 +152,7 @@ class Aika extends BaseModel {
             $errors[] = 'Kilpailija-ID ei saa olla tyhjä!';
         }
         $query2 = DB::connection()->prepare('SELECT id FROM Kilpailija WHERE id = :kilpailija_id');
-        $query2->execute(array('kisa_id' => $kilpailija_id));
+        $query2->execute(array('kilpailija_id' => $kilpailija_id));
         $kilpailijaid = $query2->fetchAll();
         if ($kilpailijaid == null) {
             $errors[] = 'Kilpailija-ID:tä ei ole olemassa!';
@@ -161,11 +161,11 @@ class Aika extends BaseModel {
         return $errors;
     }
 
-    public function validoi_kisanumero($attributes) {
+    public function validoi_kisanumero($params) {
         $errors = array();
-        $kisa_id = $attributes['kisa_id'];
-        $kilpailija_id = $attributes['kilpailija_id'];
-        $kisanumero = $attributes['kisanumero'];
+        $kisa_id = $params['kisa_id'];
+        $kilpailija_id = $params['kilpailija_id'];
+        $kisanumero = $params['kisanumero'];
         if ($kisanumero == '' || $kisanumero == null) {
             $errors[] = 'Kisanumero ei saa olla tyhjä!';
         }
@@ -177,6 +177,11 @@ class Aika extends BaseModel {
         }
 
         return $errors;
+    }
+    
+    public function destroy($kisa_id, $kilpailija_id) {
+        $query = DB::connection()->prepare('DELETE FROM Aika WHERE kisa_id = :kisa_id AND kilpailija_id = :kilpailija_id');
+        $query->execute(array('kisa_id' => $kisa_id, 'kilpailija_id' => $kilpailija_id));
     }
 
 }

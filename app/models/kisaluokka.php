@@ -2,11 +2,11 @@
 
 class Kisa extends BaseModel {
 
-    public $id, $nimi, $ajankohta;
+    public $id, $nimi, $ajankohta, $valipisteet;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
-        $this->validators = array('validoi_nimi', 'validoi_ajankohta');
+        $this->validators = array('validoi_nimi', 'validoi_ajankohta', 'validoi_valipisteet');
     }
 
     public static function all($options, $page) {
@@ -56,8 +56,8 @@ class Kisa extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Kisa (nimi, ajankohta) VALUES (:nimi, :ajankohta) RETURNING id');
-        $query->execute(array('nimi' => $this->nimi, 'ajankohta' => $this->ajankohta));
+        $query = DB::connection()->prepare('INSERT INTO Kisa (nimi, ajankohta, valipisteet) VALUES (:nimi, :ajankohta, :valipisteet) RETURNING id');
+        $query->execute(array('nimi' => $this->nimi, 'ajankohta' => $this->ajankohta, 'valipisteet' => $this->valipisteet));
         $row = $query->fetch();
 
         $this->id = $row['id'];
@@ -66,7 +66,8 @@ class Kisa extends BaseModel {
     public function errors() {
         $validoi_ajankohta = 'validoi_ajankohta';
         $validoi_nimi = 'validoi_nimi';
-        $errors = array_merge($this->{$validoi_ajankohta}(), $this->{$validoi_nimi}());
+        $validoi_valipisteet = 'validoi_valipisteet';
+        $errors = array_merge($this->{$validoi_ajankohta}(), $this->{$validoi_nimi}(), $this->{$validoi_valipisteet}());
         return $errors;
     }
 
@@ -81,10 +82,22 @@ class Kisa extends BaseModel {
 
         return $errors;
     }
+    
+    public function validoi_valipisteet() {
+        $errors = array();
+        if ($this->valipisteet == '' || $this->valipisteet == null) {
+            $errors[] = 'Pistemäärä ei saa olla tyhjä!';
+        }
+        if (strlen($this->valipisteet) > 99) {
+            $errors[] = 'Pisteitä ei voi olla näin paljon!';
+        }
+
+        return $errors;
+    }
 
     public function update() {
-        $query = DB::connection()->prepare('UPDATE Kisa SET nimi = :nimi, ajankohta = :ajankohta  WHERE id = :id');
-        $query->execute(array('id' => $this->id, 'nimi' => $this->nimi, 'ajankohta' => $this->ajankohta));
+        $query = DB::connection()->prepare('UPDATE Kisa SET nimi = :nimi, ajankohta = :ajankohta, valipisteet = :valipisteet  WHERE id = :id');
+        $query->execute(array('id' => $this->id, 'nimi' => $this->nimi, 'ajankohta' => $this->ajankohta, 'valipisteet' => $this->valipisteet));
     }
 
     public function destroy() {
@@ -116,11 +129,11 @@ class Kisa extends BaseModel {
     }
     
     public function return_valipisteet($kisa) {
-        $query = DB::connection()->prepare('SELECT DISTINCT valipiste_id FROM Aika WHERE kisa_id = :kisa_id');
+        $query = DB::connection()->prepare('SELECT valipisteet FROM Kisa WHERE id = :kisa_id');
         $query->execute(array('kisa_id' => $kisa));
-        $rows = $query->fetchAll();
+        $row = $query->fetch();
 
-        return $rows;
+        return $row;
     }
     
     public static function nimi($kisa) {

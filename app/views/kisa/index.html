@@ -32,6 +32,7 @@
             {% if user_logged_in %}
             <th>ID</th> 
             {% endif %}
+            <th>Välipisteet</th>
             <th>Ajankohta</th>
             {% if user_logged_in %}
             <th>Muokkaa</th> 
@@ -46,6 +47,7 @@
             {% if user_logged_in %}
             <td>{{kisa.id}}</td>
             {% endif %}
+            <td>{{kisa.valipisteet}}</td>
             <td>{{kisa.ajankohta}}</td>
             {% if user_logged_in %}
             <td><a class="btn btn-default btn-sm" href="{{base_path}}/kisa/{{kisa.id}}/edit">Muokkaa</a></td>

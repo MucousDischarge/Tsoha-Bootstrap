@@ -115,3 +115,11 @@ $routes->get('/kisanumero', function() {
 $routes->post('/kisanumero', function() {
     KisanumeroController::lisays();
 });
+
+$routes->get('/kilpailija/kisanumero/destroy/:kisa/:kilpailija', function($kisa, $kilpailija) {
+    KisanumeroController::destroy_from_kilpailija($kisa, $kilpailija);
+});
+
+$routes->get('/kisa/kisanumero/destroy/:kisa/:kilpailija', function($kisa, $kilpailija) {
+    KisanumeroController::destroy_from_kisa($kisa, $kilpailija);
+});

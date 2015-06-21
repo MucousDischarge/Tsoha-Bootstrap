@@ -1,16 +1,16 @@
 -- Lisää INSERT INTO lauseet tähän tiedostoon
 
-INSERT INTO Kisa (nimi, ajankohta) VALUES ('Koivistolan kisat 2015', '2015-02-20 14:00');
-INSERT INTO Kisa (nimi, ajankohta) VALUES ('Kuopion kisat 2015', '2015-02-18 12:00');
-INSERT INTO Kisa (nimi, ajankohta) VALUES ('Kakelan kesähiihto 2015', '2015-06-27 10:00');
-INSERT INTO Kisa (nimi, ajankohta) VALUES ('Strömsön kisat 2015', '2015-01-28 10:30');
-INSERT INTO Kisa (nimi, ajankohta) VALUES ('Rovaniemen tonttujahdit', '2014-12-24 23:00');
-INSERT INTO Kisa (nimi, ajankohta) VALUES ('Joensuun jatkot', '2015-02-10 10:00');
-INSERT INTO Kisa (nimi, ajankohta) VALUES ('Marttilan öljyhiihto', '2015-01-29 12:00');
-INSERT INTO Kisa (nimi, ajankohta) VALUES ('Espoon pihahiihto 2015', '2015-02-03 13:00');
-INSERT INTO Kisa (nimi, ajankohta) VALUES ('Helsingin piirimestaruus 2015', '2015-02-15 14:00');
-INSERT INTO Kisa (nimi, ajankohta) VALUES ('Tampereen töminät 2015', '2015-01-29 09:00');
-INSERT INTO Kisa (nimi, ajankohta) VALUES ('11. Laihialan lötkyt', '2014-02-02 10:00');
+INSERT INTO Kisa (nimi, ajankohta, valipisteet) VALUES ('Koivistolan kisat 2015', '2015-02-20 14:00', 2);
+INSERT INTO Kisa (nimi, ajankohta, valipisteet) VALUES ('Kuopion kisat 2015', '2015-02-18 12:00', 5);
+INSERT INTO Kisa (nimi, ajankohta, valipisteet) VALUES ('Kakelan kesähiihto 2015', '2015-06-27 10:00', 5);
+INSERT INTO Kisa (nimi, ajankohta, valipisteet) VALUES ('Strömsön kisat 2015', '2015-01-28 10:30', 4);
+INSERT INTO Kisa (nimi, ajankohta, valipisteet) VALUES ('Rovaniemen tonttujahdit', '2014-12-24 23:00', 3);
+INSERT INTO Kisa (nimi, ajankohta, valipisteet) VALUES ('Joensuun jatkot', '2015-02-10 10:00', 5);
+INSERT INTO Kisa (nimi, ajankohta, valipisteet) VALUES ('Marttilan öljyhiihto', '2015-01-29 12:00', 4);
+INSERT INTO Kisa (nimi, ajankohta, valipisteet) VALUES ('Espoon pihahiihto 2015', '2015-02-03 13:00', 3);
+INSERT INTO Kisa (nimi, ajankohta, valipisteet) VALUES ('Helsingin piirimestaruus 2015', '2015-02-15 14:00', 8);
+INSERT INTO Kisa (nimi, ajankohta, valipisteet) VALUES ('Tampereen töminät 2015', '2015-01-29 09:00', 6);
+INSERT INTO Kisa (nimi, ajankohta, valipisteet) VALUES ('11. Laihialan lötkyt', '2014-02-02 10:00', 2);
 
 
 INSERT INTO Kilpailija (nimi) VALUES ('Matti Huhtasaari');

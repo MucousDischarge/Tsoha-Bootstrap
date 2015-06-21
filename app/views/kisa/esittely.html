@@ -41,7 +41,7 @@
             <td>{{kilpailija.aika}}</td>
             <td>{{kilpailija.valipiste_id}}</td>
             <td>{% if user_logged_in %}
-                {{forms.destroy_button("#{base_path}/kisa/kisanumero/destroy/#{kisa.id}/kilpailija.kilpailija_id")}}
+                {{forms.destroy_button("#{base_path}/kisa/kisanumero/destroy/#{kisa.id}/#{kilpailija.kilpailija_id}")}}
                 {% endif %}</td>
         </tr>
         {% endfor %}

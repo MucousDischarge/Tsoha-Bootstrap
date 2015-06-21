@@ -21,7 +21,7 @@ class KisanumeroController extends BaseController {
         if (count($errors) == 0) {
             Aika::save($attributes);
 
-            Redirect::to('/kisanumero/new.html', array('message' => 'Kilpailija liitetty kisaan!'));
+            Redirect::to('/kisanumero', array('message' => 'Kilpailija liitetty kisaan!'));
         } else {
             View::make('/kisanumero/new.html', array('errors' => $errors, 'attributes' => $attributes));
         }

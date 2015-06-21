@@ -50,7 +50,7 @@ class KilpailijaController extends BaseController {
         $kilpailija = Kilpailija::find($id);
         $kaikkikisat = Aika::kaikkikisat($id, $page);
         $kisat_count = Kisa::count_esittely($kaikkikisat);
-        $page_size = 10;
+        $page_size = 20;
         $pages = ceil($kisat_count / $page_size);
         foreach ($kaikkikisat as $kisa) {
             $aika = Aika::kilpailija_all($id, $kisa);
@@ -71,6 +71,7 @@ class KilpailijaController extends BaseController {
     }
 
     public static function update($id) {
+        self::check_logged_in();
         $params = $_POST;
 
         $attributes = array(

@@ -16,7 +16,7 @@ class Aika extends BaseModel {
     public static function kaikkikisat($id, $page) {
         $query_string = 'SELECT DISTINCT kisa_id FROM Aika';
 
-        $page_size = 10;
+        $page_size = 20;
 
         $offset = $page_size * ($page - 1);
 
@@ -52,7 +52,7 @@ class Aika extends BaseModel {
     public static function kaikkikilpailijat($id, $page) {
         $query_string = 'SELECT DISTINCT kilpailija_id FROM Aika';
 
-        $page_size = 10;
+        $page_size = 20;
 
         $offset = $page_size * ($page - 1);
 

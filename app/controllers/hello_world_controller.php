@@ -15,14 +15,4 @@ class HelloWorldController extends BaseController {
         View::make('/user/kirjautuminen.html');
     }
 
-    public static function sandbox() {
-        $doom = new Kisa(array(
-            'nimi' => 'd',
-            'ajankohta' => '1'
-        ));
-        $errors = $doom->errors();
-
-        Kint::dump($errors);
-    }
-
 }

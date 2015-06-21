@@ -50,7 +50,7 @@ class KisaController extends BaseController {
         $valipisteet = Kisa::return_valipisteet($id);
         if (isset($kaikkikilpailijat[0])) {
             $kilpailijat_count = Kilpailija::count_esittely($kaikkikilpailijat);
-            $page_size = 10;
+            $page_size = 20;
             $pages = ceil($kilpailijat_count / $page_size);
             foreach ($kaikkikilpailijat as $kilpailija) {
                 $aika = Aika::kisa_all($id, $kilpailija);
@@ -72,7 +72,7 @@ class KisaController extends BaseController {
         $valipisteet = Kisa::return_valipisteet($id);
         if (isset($kaikkikilpailijat[0])) {
             $kilpailijat_count = Kilpailija::count_esittely($kaikkikilpailijat);
-            $page_size = 10;
+            $page_size = 20;
             $pages = ceil($kilpailijat_count / $page_size);
             foreach ($kaikkikilpailijat as $kilpailija) {
                 $nimi = Kilpailija::nimi($kilpailija);
@@ -99,6 +99,7 @@ class KisaController extends BaseController {
     }
 
     public static function update($id) {
+        self::check_logged_in();
         $params = $_POST;
 
         $attributes = array(

@@ -2,9 +2,24 @@
 
 class KilpailijaController extends BaseController {
 
-    public static function index() {
-        $kilpailijat = Kilpailija::all();
-        View::make('kilpailija/index.html', array('kilpailijat' => $kilpailijat));
+    public static function index($page) {
+        $params = $_GET;
+
+        if (isset($params['search'])) {
+            $options = array('search' => $params['search']);
+        } else {
+            $options = array();
+        }
+        
+        $kilpailijat = Kilpailija::all($options, $page);
+        $kilpailijat_count = Kilpailija::count();
+        $page_size = 10;
+        $pages = ceil($kilpailijat_count / $page_size);
+        foreach ($kilpailijat as $kilpailija) {
+            $kisa_id = Aika::kilpailija_latest_id($kilpailija);
+            $array[] = array('id' => $kilpailija->id, 'nimi' => $kilpailija->nimi, 'kisa_id' => $kisa_id, 'kisanimi' => Aika::kilpailija_latest_nimi($kisa_id));
+        }
+        View::make('kilpailija/index.html', array('kilpailijat' => $array, 'pages' => $pages));
     }
 
     public static function lisaysnakyma() {
@@ -27,13 +42,20 @@ class KilpailijaController extends BaseController {
 
             Redirect::to('/kilpailija/' . $kilpailija->id, array('message' => 'Kilpailija on lisätty listaan!'));
         } else {
-            View::make('kisa/new.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('kilpailija/new.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
 
     public static function esittely($id) {
         $kilpailija = Kilpailija::find($id);
-        View::make('kilpailija/esittely.html', array('kilpailija' => $kilpailija));
+        $kaikkikisat = Aika::kaikkikisat($id);
+        foreach ($kaikkikisat as $kisa) {
+            echo $kisa;
+            $aika = Aika::kilpailija_all($id, $kisa);
+            $nimi = Kisa::nimi($kisa);
+            $array[] = array('kisa_nimi' => $nimi, 'kisa_id' => $kisa, 'valipiste_id' => $aika[0], 'kisanumero' => $aika[1], 'aika' => $aika[2]);
+        }
+        View::make('kilpailija/esittely.html', array('kilpailija' => $kilpailija, 'kisat' => $array));
     }
     
     public static function edit($id) {
@@ -59,7 +81,7 @@ class KilpailijaController extends BaseController {
             Redirect::to('/kilpailija/' . $kilpailija->id, array('message' => 'Kilpailijaa on muokattu onnistuneesti!'));
           
         } else {
-           View::make('kisa/edit.html', array('errors' => $errors, 'attributes' => $attributes));  
+           View::make('kilpailija/edit.html', array('errors' => $errors, 'attributes' => $attributes));  
         }
     }
 

@@ -18,8 +18,7 @@ $routes->get('/kirjautuminen', function() {
 });
 
 $routes->get('/kisa', function() {
-    $sivu = 1;
-    KisaController::index($sivu);
+    KisaController::index(1);
 });
 
 $routes->get('/kisa/listaussivu/:sivu', function($sivu) {
@@ -62,7 +61,11 @@ $routes->post('/logout', function(){
 });
 
 $routes->get('/kilpailija', function() {
-    KilpailijaController::index();
+    KilpailijaController::index(1);
+});
+
+$routes->get('/kilpailija/listaussivu/:sivu', function($sivu) {
+    KilpailijaController::index($sivu);
 });
 
 $routes->get('/kilpailija/lisays', function() {
@@ -80,10 +83,19 @@ $routes->get('/kilpailija/:id', function($id) {
 $routes->get('/kilpailija/:id/edit', function($id) {
     KilpailijaController::edit($id);
 });
+
 $routes->post('/kilpailija/:id/edit', function($id) {
     KilpailijaController::update($id);
 });
 
 $routes->post('/kilpailija/:id/destroy', function($id) {
     KilpailijaController::destroy($id);
+});
+
+$routes->get('/kisanumero', function() {
+    KisanumeroController::lisaysnakyma();
+});
+
+$routes->post('/kisanumero', function() {
+    KisanumeroController::lisays();
 });

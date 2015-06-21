@@ -9,9 +9,28 @@ class Kilpailija extends BaseModel {
         $this->validators = array('validoi_nimi');
     }
 
-    public static function all() {
-        $query = DB::connection()->prepare('SELECT * FROM Kilpailija');
-        $query->execute();
+    public static function all($options, $page) {
+        $query_string = 'SELECT * FROM Kilpailija';
+
+        if (isset($options['page_size'])) {
+            $page_size = $options['page_size'];
+        } else {
+            $page_size = 10;
+        }
+
+        $options['limit'] = $page_size;
+        $options['offset'] = $page_size * ($page - 1);
+
+        if (isset($options['search'])) {
+            $query_string .= ' WHERE nimi LIKE :search';
+        }
+
+        $query_string .= ' ORDER BY nimi ASC';
+
+        $query_string .= ' LIMIT :limit OFFSET :offset';
+        $query = DB::connection()->prepare($query_string);
+
+        $query->execute($options);
         $rows = $query->fetchAll();
         $kilpailijat = array();
 
@@ -20,6 +39,19 @@ class Kilpailija extends BaseModel {
         }
 
         return $kilpailijat;
+    }
+
+    public static function kisa_id($kilpailijat) {
+        $query_string2 = 'Select kisa_id FROM Aika';
+        $query_string2 .= ' WHERE kilpailija_id = :kilpailija_id';
+        $query_string2 .= ' AND aika = (select max(aika.aika)';
+        $query_string2 .= ' FROM (select aika from Aika where kilpailija_id = :kilpailija_id and CURRENT_TIMESTAMP > aika) as aika)';
+        $query2 = DB::connection()->prepare($query_string2);
+        $query2->execute(array('kilpailija_id' => $kilpailijat['id']));
+        $row2 = $query2->fetchAll();
+        if ($row2) {
+            
+        }
     }
 
     public static function find($id) {
@@ -58,6 +90,19 @@ class Kilpailija extends BaseModel {
     public function destroy() {
         $query = DB::connection()->prepare('DELETE FROM Kilpailija WHERE id = :id');
         $query->execute(array('id' => $this->id));
+    }
+
+    public function count() {
+        $query = DB::connection()->prepare('SELECT * FROM Kilpailija');
+        $query->execute();
+        $rows = $query->fetchAll();
+        $kilpailijat = 0;
+
+        foreach ($rows as $row) {
+            $kilpailijat++;
+        }
+
+        return $kilpailijat;
     }
 
 }

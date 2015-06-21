@@ -1,34 +1,30 @@
 <?php
 
 class KisanumeroController extends BaseController {
-
-    public static function index() {
-        $kisat = Kisa::all();
-        View::make('kisa/index.html', array('kisat' => $kisat));
-    }
-
+    
     public static function lisaysnakyma() {
         self::check_logged_in();
-        View::make('kisa/new.html');
+        View::make('kisanumero/new.html');
     }
 
     public static function lisays() {
         self::check_logged_in();
         $params = $_POST;
         $attributes = array(
-            'nimi' => $params['nimi'],
-            'ajankohta' => $params['ajankohta']
+            'kisa_id' => $params['kisa_id'],
+            'kilpailija_id' => $params['kilpailija_id'],
+            'kisanumero' => $params['kisanumero']
         );
 
-        $kisa = new Kisa($attributes);
-        $errors = $kisa->errors();
+        $kisanumero = new Aika($attributes);
+        $errors = $kisanumero->errors();
 
         if (count($errors) == 0) {
-            $kisa->save();
+            $kisanumero->save();
 
-            Redirect::to('/kisa/' . $kisa->id, array('message' => 'Kisa on lisätty listaan!'));
+            Redirect::to('/kisanumero', array('message' => 'Kilpailija liitetty kisaan!'));
         } else {
-            View::make('kisa/new.html', array('errors' => $errors, 'attributes' => $attributes));
+            View::make('kisanumero/new.html', array('errors' => $errors, 'attributes' => $attributes));
         }
     }
 
@@ -73,4 +69,3 @@ class KisanumeroController extends BaseController {
     }
 
 }
-

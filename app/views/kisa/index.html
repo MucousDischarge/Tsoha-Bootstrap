@@ -29,6 +29,9 @@
     <thead>
         <tr>
             <th>Nimi</th>
+            {% if user_logged_in %}
+            <th>ID</th> 
+            {% endif %}
             <th>Ajankohta</th>
             {% if user_logged_in %}
             <th>Muokkaa</th> 
@@ -40,6 +43,9 @@
         {% for kisa in kisat %}
         <tr>
             <td><a href="{{base_path}}/kisa/{{kisa.id}}">{{kisa.nimi}}</td>
+            {% if user_logged_in %}
+            <td>{{kisa.id}}</td>
+            {% endif %}
             <td>{{kisa.ajankohta}}</td>
             {% if user_logged_in %}
             <td><a class="btn btn-default btn-sm" href="{{base_path}}/kisa/{{kisa.id}}/edit">Muokkaa</a></td>

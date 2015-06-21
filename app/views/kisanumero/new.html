@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+{% if not message == false %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
   
-  <h1>Lisää kisanumero listaan</h1>
+  <h1>Lisää kilpailija kisaan</h1>
 
   {% if errors %}
     <div class="alert alert-danger">

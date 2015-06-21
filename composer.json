@@ -6,7 +6,8 @@
 			"app/controllers",
                         "app/models/kisaluokka.php",
                         "app/models/kayttaja.php",
-                        "app/models/kilpailijaluokka.php"
+                        "app/models/kilpailijaluokka.php",
+                        "app/models/aikaluokka.php"
 		]
 	},
 	"require": {

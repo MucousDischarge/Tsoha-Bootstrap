@@ -3,7 +3,7 @@
 {% import "macros/forms.html" as forms %}
 {% if not message == false %}
 <div class="alert alert-success">
-  {{message}}
+    {{message}}
 </div>
 {% endif %}
 
@@ -26,8 +26,14 @@
     </thead>
 
     <tbody>
+        {% for kisa in kisat %}
         <tr>
+            <td><a href="{{base_path}}/kisa/{{kisa.kisa_id}}">{{kisa.kisa_nimi}}</td>
+            <td>{{kisa.kisanumero}}</td>
+            <td>{{kisa.aika}}</td>
+            <td>{{kisa.valipiste_id}}</td>
         </tr>
+        {% endfor %}
     </tbody>
 </table>
 

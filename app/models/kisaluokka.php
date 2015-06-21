@@ -25,6 +25,8 @@ class Kisa extends BaseModel {
             $query_string .= ' WHERE nimi LIKE :search';
         }
         
+        $query_string .= ' ORDER BY ajankohta DESC';
+        
         $query_string .= ' LIMIT :limit OFFSET :offset';
         $query = DB::connection()->prepare($query_string);
         
@@ -101,6 +103,14 @@ class Kisa extends BaseModel {
         }
 
         return $kisat;
+    }
+    
+    public static function nimi($kisa) {
+        $query = DB::connection()->prepare('SELECT nimi FROM Kisa WHERE id = :id LIMIT 1');
+        $query->execute(array('id' => $kisa[0]));
+        $row = $query->fetch();
+
+        return $row[0];
     }
 
 }
